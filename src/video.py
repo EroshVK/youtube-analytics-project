@@ -3,7 +3,7 @@ from src.channel import Channel
 
 class Video:
     def __init__(self, video_id):
-        """Экземпляр инициализируется id видео."""
+        """Р­РєР·РµРјРїР»СЏСЂ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚СЃСЏ id РІРёРґРµРѕ."""
         self.video_id = video_id
 
         channel_data: dict = self.get_video_data()
@@ -14,11 +14,11 @@ class Video:
         self.like_count: int = channel_data['items'][0]['statistics']['likeCount']
 
     def __str__(self):
-        """Метод для отображения информации об объекте класса для пользователей."""
+        """РњРµС‚РѕРґ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё РѕР± РѕР±СЉРµРєС‚Рµ РєР»Р°СЃСЃР° РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№."""
         return f"{self.title}"
 
     def get_video_data(self):
-        """Получает данные о видео"""
+        """РџРѕР»СѓС‡Р°РµС‚ РґР°РЅРЅС‹Рµ Рѕ РІРёРґРµРѕ"""
         return Channel.get_service().videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                                    id=self.video_id
                                                    ).execute()
@@ -26,7 +26,7 @@ class Video:
 
 class PLVideo(Video):
     def __init__(self, video_id, playlist_id):
-        """Экземпляр инициализируется id плейлиста."""
+        """Р­РєР·РµРјРїР»СЏСЂ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚СЃСЏ id РїР»РµР№Р»РёСЃС‚Р°."""
         super().__init__(video_id)
 
         self.playlist_id = playlist_id
