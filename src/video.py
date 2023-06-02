@@ -19,8 +19,11 @@ class Video:
             self.url: str = str("https://youtu.be/" + video_id)
             self.view_count: int = channel_data['items'][0]['statistics']['viewCount']
             self.like_count: int = channel_data['items'][0]['statistics']['likeCount']
-        except VideoNotFound:
-            VideoNotFound('Видео не найдено')
+        except IndexError:
+            self.title = None
+            self.url = None
+            self.view_count = None
+            self.like_count = None
 
     def __str__(self):
         """Метод для отображения информации об объекте класса для пользователей."""
@@ -39,10 +42,3 @@ class PLVideo(Video):
         super().__init__(video_id)
 
         self.playlist_id = playlist_id
-
-
-class VideoNotFound(Exception):
-    """
-    Базовый класс исключения VideoNotFound
-    """
-    pass
